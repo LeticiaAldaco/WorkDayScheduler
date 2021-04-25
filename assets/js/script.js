@@ -66,7 +66,7 @@ function displayBlock() {
 
     $(`#${workHours[i]}`).click(function(event) {
       var data = $(`#hour-${event.target.id}`).val()
-      console.log(event)
+      console.log(data)
     })
 
   }

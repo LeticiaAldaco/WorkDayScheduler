@@ -1,5 +1,7 @@
 // Add current date 
-
+var currentDay= moment().format("MMM Do YY"); 
+$("#currentDay").text(currentDay);
+var currentHour= moment().format("HH");
 // Create Array that contains the times needed
 var workHours= [9, 10, 11, 12, 13, 14, 15, 16, 17];
 function displayBlock (){
@@ -16,6 +18,37 @@ function displayBlock (){
     </div>
 */
 // Create a for loop, loops thorugh length of Work Hours and dinamically create time blocks
+for(var i=0; i<workHours.length; i++){
+  var d1=$("<div>");
+  d1.attr("class", "row time-block");
+ 
+  var d2=$("<div>");
+  d2.attr("class", "col-1 hour");
+  if(workHours[i]<12){
+    d2.text(workHours[i]+"am");
+  }
+  if(workHours[i]===12){
+      d2.text(workHours[i]+"pm");
+  } 
+  if(workHours[i]>12){
+      d2.text(workHours[i]-12+"pm");
+  }
+
+var textarea=$("<textarea>");
+textarea.attr("class", "col-10 description");
+
+if(workHours[i]==currentHour) {
+    textarea.attr("class", "col-10 description present");
+}
+if(workHours[i]<currentHour){
+    textarea.attr("class", "col-10 description past");
+}
+
+if(workHours[i]>currentHour){
+    textarea.attr("class", "col-10 description future");
+}
+
+}
 
 // Add past,present, future classes
 }

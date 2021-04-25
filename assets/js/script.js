@@ -63,6 +63,12 @@ function displayBlock() {
     d1.append(button);
 
     $(".container").append(d1);
+
+    $(`#${workHours[i]}`).click(function(event) {
+      var data = $(`#hour-${event.target.id}`).val()
+      console.log(event)
+    })
+
   }
 
   // Add past,present, future classes

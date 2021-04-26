@@ -17,7 +17,7 @@ function displayBlock() {
 
     </div>
 */
-  // Create a for loop, loops thorugh length of Work Hours and dinamically create time blocks
+  // Create a for loop, loops thorugh length of Work Hours and dynamically create time blocks
   for (var i = 0; i < workHours.length; i++) {
     var d1 = $("<div>");
     d1.attr("class", "row time-block");
@@ -64,22 +64,32 @@ function displayBlock() {
 
     $(".container").append(d1);
 
-    $(`#${workHours[i]}`).click(function(event) {
-      var data = $(`#hour-${event.target.id}`).val()
-      console.log(data)
-    })
+    // On click save button capture text area value and button id
 
+    $(`#${workHours[i]}`).click(function (event) {
+      var data = $(`#hour-${event.target.id}`).val();
+      localStorage.setItem(event.target.id, data);
+      console.log(data);
+    });
   }
-
-  // Add past,present, future classes
 }
 
-// Add text box to enter event
-
-// Create a button to save event
-
-// On click save button capture text area value and button id
-
 // Create funtion to save tasks (set item)
+function saveStorage() {
+  let userInput = $(this).siblings(".textarea").val();
+  var localStorageKey = $(this).siblings("workHours").text();
+  localStorage.setItem(localStorageKey, userInput);
+  console.log(localStorageKey, userInput);
+}
+
 // Create function to grab tasks from local storage (get item)
+function displayStorage() {
+  for (var i = 0; i < workHours.length; i++) {
+    var data = localStorage.getItem(workHours[i]);
+    var hourTextArea = $(`#hour-${workHours[i]}`);
+    hourTextArea.val(data);
+    console.log(hourTextArea, data);
+  }
+}
 displayBlock();
+displayStorage();
